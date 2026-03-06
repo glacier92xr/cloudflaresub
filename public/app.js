@@ -61,14 +61,15 @@ form.addEventListener('submit', async (event) => {
 
     autoUrl.value = data.urls.auto;
     rawUrl.value = data.urls.raw;
+    document.getElementById('rocketUrl').value = data.urls.raw;
     clashUrl.value = data.urls.clash;
     surgeUrl.value = data.urls.surge;
 
-    counts.innerHTML = [
-      `<span>原始节点 ${data.counts.inputNodes}</span>`,
-      `<span>优选地址 ${data.counts.preferredEndpoints}</span>`,
-      `<span>生成节点 ${data.counts.outputNodes}</span>`,
-    ].join('');
+    emptyState.classList.add('hidden');
+
+    document.getElementById('statInputNodes').textContent = data.counts.inputNodes;
+    document.getElementById('statEndpoints').textContent = data.counts.preferredEndpoints;
+    document.getElementById('statOutputNodes').textContent = data.counts.outputNodes;
 
     previewBody.innerHTML = data.preview
       .map(
